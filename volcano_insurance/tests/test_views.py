@@ -99,6 +99,22 @@ class ViewsTests(APITestCase):
         response = self.client.get("http://testserver/quotes/1")
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
+    def test_get_checkout_quote_exists(self):
+        """It should return a checkout quote if exists."""
+        post_response = self.client.post(
+            "/quotes",
+            {
+                "previous_policy_cancelled": "True",
+                "owns_property_to_be_insured": "True",
+                "property_zip_code": "84096",
+                "property_state": "ut",
+            },
+            format="json",
+        )
+        quote_number = post_response.data.get("quote_number")
+        response = self.client.get(f"http://testserver/quotes/{quote_number}/checkout")
+        assert response.status_code == status.HTTP_200_OK
+
     def test_get_checkout_quote_does_not_exist(self):
         """It returns a 404 if the checkout quote does not exist."""
         response = self.client.get("http://testserver/quotes/foobar/checkout")
