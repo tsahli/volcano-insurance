@@ -14,8 +14,8 @@ class Quote(models.Model):
     quote_number = models.CharField(
         max_length=10, editable=False, default=get_random_quote_string
     )
-    effective_date = models.DateField(default=date.today())
-    previous_policy_cancelled = models.BooleanField(default=False)
-    owns_property_to_be_insured = models.BooleanField(default=False)
+    effective_date = models.DateField(default=date.today)
+    previous_policy_cancelled = models.BooleanField()
+    owns_property_to_be_insured = models.BooleanField()
     property_zip_code = models.CharField(max_length=50)
     property_state = models.CharField(max_length=50)

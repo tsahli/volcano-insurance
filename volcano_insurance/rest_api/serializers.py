@@ -40,21 +40,5 @@ class QuoteSerializer(serializers.Serializer):
         return Quote.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """Updates an existing Quote object."""
-        instance.effective_date = validated_data.get(
-            "effective_date", instance.effective_date
-        )
-        instance.previous_policy_cancelled = validated_data.get(
-            "previous_policy_cancelled", instance.previous_policy_cancelled
-        )
-        instance.owns_property_to_be_insured = validated_data.get(
-            "owns_property_to_be_insured", instance.owns_property_to_be_insured
-        )
-        instance.property_zip_code = validated_data.get(
-            "property_zip_code", instance.property_zip_code
-        )
-        instance.property_state = validated_data.get(
-            "property_state", instance.property_state
-        )
-        instance.save()
+        """DRF needs this to be implemented to get single. Has no other use."""
         return instance

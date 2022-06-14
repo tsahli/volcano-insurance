@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_api.models import Quote
 from rest_api.serializers import QuoteSerializer
+from .calculate_quote import CalculateQuote
 
 
 class QuoteList(APIView):
@@ -41,4 +42,15 @@ class QuoteDetail(APIView):
 
 
 class CheckoutQuote(APIView):
-    pass
+    def __get_checkout_quote_or_404(self, quote_number):
+        """Returns a checkout quote or raises a 404"""
+        try:
+            return Quote.objects.get(quote_number=quote_number)
+        except Quote.DoesNotExist:
+            raise Http404
+
+    def get(self, request, quote_number, format=None):
+        """Checkout a quote by quote number."""
+        quote = self.__get_checkout_quote_or_404(quote_number)
+        calculated_quote = CalculateQuote(quote).form_checkout_quote_response()
+        return Response(calculated_quote)
