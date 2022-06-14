@@ -1,7 +1,7 @@
 FROM python:3.9.6
 ENV PYTHONUNBUFFERED 1
 
-RUN git clone https://github.com/tsahli/volcano-insurance.git
+RUN git clone https://github.com/tsahli/volcano-insurance.git /volcano_insurance
 
 WORKDIR /volcano-insurance
 

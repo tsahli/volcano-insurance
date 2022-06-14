@@ -2,6 +2,9 @@ start:
 	sudo docker build -t volcano-insurance ../ ;
 	docker run -d -p 8080:8000 -v src:/volcano-insurance --name volcano-insurance volcano-insurance
 
+start-no-docker:
+	python manage.py runserver
+
 test:
 	python manage.py test
 

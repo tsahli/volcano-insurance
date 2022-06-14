@@ -4,7 +4,7 @@ An API built with Python  and [Django REST Framework](https://www.django-rest-fr
 ---
 ### Quickstart
 Prerequisites:
-* Docker
+* Docker. If you don't have Docker, run with `make start-no-docker`
 
 ```
 cd volcano_insurance
@@ -12,7 +12,8 @@ make start
 ```
 
 ### Makefile commands
-* `make start` -- start the server running locally
+* `make start` -- start the server in a docker container
+* `make start-no-docker` -- start the server without docker
 * `make migrate-all` -- make and apply migrations
 * `make test` -- run the test suite
 * `make format` -- run the black formatter
