@@ -21,7 +21,9 @@ class CalculateQuoteTest(TestCase):
             property_state="Utah",
         )
         result = CalculateQuote(quote).form_checkout_quote_response()
-        assert result.get("total_additional_fees") == (BASE_PRICE * VOLCANO_FEE) + (BASE_PRICE * CANCELLATION_FEE)
+        assert result.get("total_additional_fees") == (BASE_PRICE * VOLCANO_FEE) + (
+            BASE_PRICE * CANCELLATION_FEE
+        )
 
     def test_quotes_are_calculating_monthly_fees_correctly(self):
         """A quote's monthly fee should equal the total fee / POLICY_TERM_MONTHS"""
@@ -44,7 +46,9 @@ class CalculateQuoteTest(TestCase):
             property_state="Nevada",
         )
         result = CalculateQuote(quote).form_checkout_quote_response()
-        assert result.get("total_discounts") == (BASE_PRICE * NEVER_CANCELLED_DISCOUNT) + (BASE_PRICE * OWNS_PROPERTY_DISCOUNT)
+        assert result.get("total_discounts") == (
+            BASE_PRICE * NEVER_CANCELLED_DISCOUNT
+        ) + (BASE_PRICE * OWNS_PROPERTY_DISCOUNT)
 
     def test_quotes_are_calculating_monthly_discounts_correctly(self):
         """A quotes monthly discount should equal the total discount / POLICY_TERM_MONTHS"""
@@ -56,7 +60,10 @@ class CalculateQuoteTest(TestCase):
         )
         result = CalculateQuote(quote).form_checkout_quote_response()
         total_discounts = result.get("total_discounts")
-        assert result.get("total_monthly_discounts") == total_discounts / POLICY_TERM_MONTHS
+        assert (
+            result.get("total_monthly_discounts")
+            == total_discounts / POLICY_TERM_MONTHS
+        )
 
     def test_total_term_premium_is_calculated_correctly(self):
         """Total term premium should equal the sum of all additional fees minus discounts."""
@@ -67,9 +74,14 @@ class CalculateQuoteTest(TestCase):
             property_state="Utah",
         )
         result = CalculateQuote(quote).form_checkout_quote_response()
-        total_applicable_fees = (BASE_PRICE * VOLCANO_FEE)
-        total_applicable_discounts = (BASE_PRICE * OWNS_PROPERTY_DISCOUNT) + (BASE_PRICE * NEVER_CANCELLED_DISCOUNT)
-        assert result.get("total_term_premium") == BASE_PRICE + total_applicable_fees - total_applicable_discounts
+        total_applicable_fees = BASE_PRICE * VOLCANO_FEE
+        total_applicable_discounts = (BASE_PRICE * OWNS_PROPERTY_DISCOUNT) + (
+            BASE_PRICE * NEVER_CANCELLED_DISCOUNT
+        )
+        assert (
+            result.get("total_term_premium")
+            == BASE_PRICE + total_applicable_fees - total_applicable_discounts
+        )
 
     def test_total_monthly_premium_is_calculated_correctly(self):
         """Total monthly premium should equal the total term premium / POLICY_TERM_MONTHS"""
@@ -81,4 +93,7 @@ class CalculateQuoteTest(TestCase):
         )
         result = CalculateQuote(quote).form_checkout_quote_response()
         total_term_premium = result.get("total_term_premium")
-        assert result.get("monthly_total_premium") == total_term_premium / POLICY_TERM_MONTHS
+        assert (
+            result.get("monthly_total_premium")
+            == total_term_premium / POLICY_TERM_MONTHS
+        )
