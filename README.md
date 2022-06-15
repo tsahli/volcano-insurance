@@ -41,4 +41,5 @@ make start
 
 ### Notes
 * Manually tested all endpoints with Postman
+* Did not round checkout quote values intentionally, but could be easily done with some changes in `calculate_quote.py`
 * Had a lot of fun learning DRF, thanks for the opportunity :)
