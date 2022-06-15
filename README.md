@@ -36,3 +36,9 @@ make start
     * GET return a specific quote object
 * localhost:8080/quotes/{quote_number}/checkout
     * GET return a checkout quote for a given quote number
+
+---
+
+### Notes
+* Manually tested all endpoints with Postman
+* Had a lot of fun learning DRF, thanks for the opportunity :)
