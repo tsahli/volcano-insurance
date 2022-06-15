@@ -11,7 +11,7 @@ cd volcano_insurance
 make start
 ```
 
-### Makefile commands
+### Makefile commands (Be sure to be in the `volcano_insurance` directory)
 * `make start` -- start the server in a docker container
 * `make start-no-docker` -- start the server without docker
 * `make migrate-all` -- make and apply migrations
