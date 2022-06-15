@@ -4,7 +4,6 @@ from rest_api.models import Quote
 from datetime import date
 import re
 import us
-from django.utils.crypto import get_random_string
 
 
 class QuoteSerializer(serializers.Serializer):

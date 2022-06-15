@@ -1,4 +1,4 @@
-"""Business logic for calculating a quoite."""
+"""Business logic for calculating a quote."""
 
 POLICY_TERM_MONTHS = 6
 BASE_PRICE = 59.94
